@@ -20,13 +20,19 @@ public class NationalParkVisit {
     private Long visit_id;
 
     @Column(nullable = false)
+    private Long national_park_id;
+
+    @Column(nullable = false)
     private Date start_date;
 
     @Column(nullable = false)
     private Date end_date;
 
 
-    @OneToMany(targetEntity = NationalParkVisitMedia.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<NationalParkVisitMedia> mediaList;
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_visit",
+            joinColumns ={ @JoinColumn(name = "visit_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private List<NationalParkVisit> visits;
 }
