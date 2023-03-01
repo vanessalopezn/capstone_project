@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style/login.css">
+    <script src="./../js/login.js"></script>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+</head>
+<body>
+<form method="post" action="#" th:action="@{/login}" th:object="${user}">
+
+<div >
+        <div class="tableDiv">
+            <table>
+                <tbody>
+                <tr>
+                    <th>User Login</th>
+                </tr>
+                <tr>
+                    <td><input id="username" type="text" name="username" class="text" value="Username"
+                               onfocusout="focusOut('username','value', 'Username')"
+                               onclick="clearValue('username','value')">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="password" type="text" name="pwd" class="text" value="Password"
+                               onfocusout="focusOut('password','value', 'Password')"
+                               onclick="clearValue('password','value')">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="login" class="login_button" value="Login"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="http://localhost:8010/createUser">Create User</a>
+                        <p class="p_href"><a>Forgot password</a></p></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</body>
+</html>

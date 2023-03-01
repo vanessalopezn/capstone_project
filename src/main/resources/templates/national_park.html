@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/national-park.css}">
+</head>
+<body>
+
+<div class="container">
+    <form action="#" th:action="@{/save-np-visit}" th:object="${national_park_visit}" method="post">
+
+        <div class="tableDiv">
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="2"><h1>User</h1></th>
+                </tr>
+                <tr>
+                    <td><label class="label">State</label>
+                    </td>
+                    <td>
+                            <select class="" id="dropDownListStates" th:onchange="@{/parklist}">
+                                <option value="0">select option</option>
+                                <option th:each="st : ${statelist}" th:value="${st.state_code}" th:text="${st.name}"></option>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="label">National Park</label></td>
+                    <td>
+                        <!--th:object="${national_park}"-->
+                            <select class="" id="dropDownListNP">
+                                <option value="0">select option</option>
+                                <!--option th:each="np : ${np-list}" th:value="${np.national_park_id}" th:text="$np.name}"></option-->
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="label">Start Date</label>
+                    </td>
+                    <td><input type="date" class="text"> <!-- th:field="*{start_date}"-->
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="label">End Date</label>
+                    </td>
+                    <td><input type="date" class="text"> <!--th:field="*{end_date}"-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" class="_button" value="Save"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
