@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<div th:fragment="headermenu" class="container">
+<nav>
+    <a th:href="@{/visit_park_list}">Visited National Park</a>
+    <a th:href="@{/loadVisitNParkForm}">Add Visit a National Park</a>
+    <a th:href="@{/all_national_park_list}">National Parks</a>
+    <a th:href="@{/createUser}">My Info</a>
+    <a th:href="@{/logout}" style="float: right;">Sign out</a>
+
+</nav>
+
+</div>
+</body>
+</html>

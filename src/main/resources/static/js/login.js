@@ -10,7 +10,6 @@
 
 
         function clearValue(element, attribute){
-            console.log("clearValue()");
             document.getElementById(element).setAttribute(  attribute, " ");
         }
 

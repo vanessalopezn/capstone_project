@@ -1,6 +1,7 @@
 package com.perscholas.capstone.model;
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Setter
@@ -19,9 +20,19 @@ public class User {
     private  String password;
 
     @Column(nullable = false)
-    private String first_name;
+    private String firstName;
 
     @Column(nullable = false)
-    private String last_name;
+    private String lastName;
+
+
+    @OneToMany(targetEntity = NationalParkVisit.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<NationalParkVisit> visits;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List <Role> roles;
 
 }

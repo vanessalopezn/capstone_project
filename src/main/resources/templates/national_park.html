@@ -1,62 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/national-park.css}">
+    <script th:src="@{/js/national-park.js}"></script>
+
+    <script  type="text/javascript" th:inline="javascript">
+      /*<![CDATA[*/
+        let parkListByState;
+        function loadP(){
+            parkListByState = [[${parklistbycode}]];
+
+        }
+        function loadParks() {
+           loadP();
+           let code = document.getElementById('dropDownListStates').value;
+           const select = document.querySelectorAll('select')[1];
+
+           while(select.length > 1){
+                select.remove(select.length -1);
+           }
+
+           parkListByState[code].forEach(function(parks){
+                let id = parks[0];
+                let name = parks[1];
+                let option = document.createElement('option');
+                option.value = id;
+                option.innerText = name;
+                select.appendChild(option);
+           });
+        }
+        /*]]>*/
+
+    </script>
 </head>
 <body>
+<header th:replace="header :: headermenu"></header>
+<div class="div_body" sec:authorize="isAuthenticated()">
+    <form th:action="@{/saveVisitNp}" th:object="${npvisit}" method="post">
 
-<div class="container">
-    <form action="#" th:action="@{/save-np-visit}" th:object="${national_park_visit}" method="post">
-
-        <div class="tableDiv">
-            <table>
+        <table align="center">
                 <tbody>
                 <tr>
-                    <th colspan="2"><h1>User</h1></th>
+                    <th colspan="2"><h1>Visit</h1></th>
                 </tr>
                 <tr>
                     <td><label class="label">State</label>
                     </td>
                     <td>
-                            <select class="" id="dropDownListStates" th:onchange="@{/parklist}">
-                                <option value="0">select option</option>
-                                <option th:each="st : ${statelist}" th:value="${st.state_code}" th:text="${st.name}"></option>
-                            </select>
+                        <select class="" id="dropDownListStates" th:onchange="loadParks()">
+                            <option value="0">select option</option>
+                            <option th:each="st : ${statelist}" th:value="${st.state_code}" th:text="${st.name}">
+                            </option>
+                        </select>
+                        <br><label id="err-state" class="error"></label>
                     </td>
                 </tr>
                 <tr>
                     <td><label class="label">National Park</label></td>
                     <td>
-                        <!--th:object="${national_park}"-->
-                            <select class="" id="dropDownListNP">
-                                <option value="0">select option</option>
-                                <!--option th:each="np : ${np-list}" th:value="${np.national_park_id}" th:text="$np.name}"></option-->
-                            </select>
+                        <select class="" id="dropDownListNP"  th:field="*{national_park_id}">
+                            <option value="0">select option</option>
+                        </select>
+                        <br><label id="err-visit" class="error"></label>
                     </td>
                 </tr>
                 <tr>
                     <td><label class="label">Start Date</label>
                     </td>
-                    <td><input type="date" class="text"> <!-- th:field="*{start_date}"-->
+                    <td>
+                        <input type="date" id="start-date" class="text" th:field="*{start_date}">
+                        <br><label id="err-sd" class="error"></label>
                     </td>
                 </tr>
                 <tr>
-                    <td><label class="label">End Date</label>
+                    <td>
+                        <label class="label">End Date</label>
                     </td>
-                    <td><input type="date" class="text"> <!--th:field="*{end_date}"-->
+                    <td>
+                        <input type="date" id="end-date" class="text" th:field="*{end_date}">
+                        <br><label id="err-ed" class="error"></label>
                     </td>
                 </tr>
 
                 <tr>
-                    <td><input type="submit" class="_button" value="Save"></td>
+                    <td colspan="2"><input type="button" class="_button" value="Save" onclick="hasValueVisitFields()"></td>
                 </tr>
                 </tbody>
             </table>
-        </div>
     </form>
-
 </div>
 
 </body>

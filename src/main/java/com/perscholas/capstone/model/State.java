@@ -3,6 +3,7 @@ package com.perscholas.capstone.model;
 import javax.persistence.*;
 import lombok.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +22,6 @@ public class State {
     @JoinTable(name = "national_park_state",
             joinColumns = {@JoinColumn(name = "state_code")},
             inverseJoinColumns = {@JoinColumn(name = "national_park_id")})
-    private Collection<NationalPark> national_parks;
+    private List<NationalPark> national_parks;
 
 }

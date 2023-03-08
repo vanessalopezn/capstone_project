@@ -1,4 +1,4 @@
-package com.perscholas.userregistration.validation;
+package com.perscholas.capstone.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

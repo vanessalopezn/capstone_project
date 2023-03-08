@@ -3,6 +3,7 @@ package com.perscholas.capstone.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,17 +23,12 @@ public class NationalParkVisit {
     @Column(nullable = false)
     private Long national_park_id;
 
+    @DateTimeFormat (pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private Date start_date;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private Date end_date;
 
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_visit",
-            joinColumns ={ @JoinColumn(name = "visit_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-    )
-    private List<NationalParkVisit> visits;
 }

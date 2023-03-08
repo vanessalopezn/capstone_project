@@ -3,7 +3,7 @@ package com.perscholas.capstone.service;
 import com.perscholas.capstone.model.NationalPark;
 import java.util.List;
 
-public interface INationalPark {
+public interface INationalParkService {
 
     List<NationalPark> getAllNationalPark();
 

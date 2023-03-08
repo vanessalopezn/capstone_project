@@ -1,7 +1,9 @@
 package com.perscholas.capstone.repository;
 
 import com.perscholas.capstone.model.NationalPark;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,22 +18,16 @@ public interface NationalParkRepository extends CrudRepository<NationalPark, Lon
      * @return list with NationalPark objects
      */
     @Override
-    Iterable<NationalPark> findAll();
+    List<NationalPark> findAll();
 
-    /**
-     * Find a national park by id
-     * @param
-     * @return a NationalPark object
-     */
-    @Override
-    Optional<NationalPark> findById(Long aLong);
+    @Query(value = "SELECT national_park_id, name, link FROM national_park WHERE national_park_id =:id", nativeQuery = true)
+    NationalPark findNationalParkById(@Param("id") Long id);
 
-    /*
-    @Query(value = "SELECT n.national_park_id, n.name, n.description, n.link, s.code, s.name " +
-            " FROM national_park n " +
-            " INNER JOIN national_park_state np_s ON n.national_park_id = np_s.national_park_id " +
-            " INNER JOIN states s ON s.code = np_s.state_code " +
-            " WHERE n.national_park_id = :id)", nativeQuery = true)
-    List<NationalPark> findNationalParkByState(@Param("id") Long id);
-    */
+    @Query(value = "SELECT sl.name, sl.state_code, np.name, np.national_park_id"
+    + " FROM national_park_state nps"
+    + " INNER JOIN national_park np ON nps.national_park_id = np.national_park_id"
+    + " INNER JOIN stateslist sl ON nps.state_code = sl.state_code"
+    + " WHERE nps.state_code = :code", nativeQuery = true)
+    List<NationalPark> findNationalParkByState(@Param("code") String code);
+
 }

@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<title>National Park</title>
+<head>
+    <link rel="stylesheet" th:href ="@{/css/national-park.css}">
+</head>
+<body>
+<header th:replace="header :: headermenu"></header>
+
+<p>
+    <strong>Logged user: <span sec:authentication="name"></span></strong>
+</p>
+<div class="div_body" sec:authorize="isAuthenticated()">
+    <p id="p_parklist">Visited National Park List</p>
+
+</div>
+</body>
+</html>
