@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Please Log In</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/national-park.css}">
+    <script th:src="@{/js/national-park.js}"></script>
+    <title>Login</title>
 </head>
-<body>
-<h1>Please Log In</h1>
-<div th:if="${param.error}">
-    Invalid username and password.</div>
-<div th:if="${param.logout}">
-    You have been logged out.</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Username"/>
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
-    </div>
-    <input type="submit" value="Log in" />
-    <div>
-        <a th:href="@{/sign-up}">Register</a>
-    </div>
-</form>
+<body class="bodylogin">
+
+<div class="div_login">
+    <form id="form" th:action="@{/login}" method="post">
+        <div class="tableDiv">
+            <table>
+                <tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">Sign In</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" id="username" class="text" name="username" placeholder="Username">
+                        <br><label class="error" id="l_username"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="password" id="password" class="text" name="password" placeholder="Password">
+                        <br><label class="error" id="l_password"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="error" th:text="${message}"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" class="login_button" value="Sign in" onclick="validateLoginFields()"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p class="p_href">
+                <a>Forgot password</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/sign-up}">Register</a>
+            </p>
+        </div>
+    </form>
+</div>
 </body>
 </html>

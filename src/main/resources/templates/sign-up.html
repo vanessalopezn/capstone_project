@@ -3,61 +3,49 @@
 <head>
     <link rel="stylesheet" th:href ="@{/css/national-park.css}">
 </head>
-<body>
+<body class="body_signup">
 
-<div class="div_body">
-    <header th:replace="header :: headermenu"></header>
-
+<div class="div_signup">
     <form th:action="@{/signup-process}"  th:object="${userDto}" method="post">
         <div class="tableDiv">
-            <table>
+            <table align="center">
                 <tbody>
                 <tr>
-                    <th colspan="2"><h1>User</h1></th>
+                    <th colspan="2"><h1>Sign Up</h1></th>
                 </tr>
                 <tr>
-                    <td><label class="label">First Name</label>
-                    </td>
                     <td>
-                        <input type="text" class="text" th:field="*{firstName}">
-                        <span th:if="${#fields.hasErrors('firstName')}"
-                              th:errors="*{firstName}"></span><br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="label">Last Name</label></td>
-                    <td>
-                        <input type="text" class="text" th:field="*{lastName}">
-                        <span th:if="${#fields.hasErrors('lastName')}"
-                              th:errors="*{lastName}"></span><br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="label">Email</label>
-                    </td>
-                    <td>
-                        <input type="text" class="text" th:field="*{email}">
-                        <span th:if="${#fields.hasErrors('email')}"
-                              th:errors="*{email}"></span><br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="label">Password</label>
-                    </td>
-                    <td>
-                        <input type="text" class="text" th:field="*{password}">
-                        <span th:if="${#fields.hasErrors('password')}"
-                              th:errors="*{password}"></span><br/>
+                        <input type="text" class="text" th:field="*{firstName}" placeholder="First Name">
+                        <br><span class="error" th:if="${#fields.hasErrors('firstName')}"
+                              th:errors="*{firstName}"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-
+                        <input type="text" class="text" th:field="*{lastName}" placeholder="Last Name">
+                        <br><span class="error" th:if="${#fields.hasErrors('lastName')}"
+                              th:errors="*{lastName}"></span>
                     </td>
+                </tr>
+                <tr>
                     <td>
-                        <input type="password" th:field="*{matchingPassword}" placeholder="Repeat Password"/>
-                        <span th:if="${#fields.hasErrors('matchingPassword')}"
-                              th:errors="*{matchingPassword}"></span><br/>
+                        <input type="text" class="text" th:field="*{email}" placeholder="Email">
+                        <br><span class="error" th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" class="text" th:field="*{password}" placeholder="Password">
+                        <br><span class="error" th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" class="text" th:field="*{matchingPassword}" placeholder="Repeat Password"/>
+                        <br><span class="error" th:if="${#fields.hasErrors('matchingPassword')}"
+                              th:errors="*{matchingPassword}"></span>
                     </td>
                 </tr>
                 <tr>

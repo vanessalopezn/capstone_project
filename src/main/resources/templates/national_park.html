@@ -6,8 +6,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/national-park.css}">
     <script th:src="@{/js/national-park.js}"></script>
 
+    <!--
+    Code of javascript to implement National park dynamic. I get all information from the server.
+    When change select state value fill the park select.
+    -->
     <script  type="text/javascript" th:inline="javascript">
       /*<![CDATA[*/
+
         let parkListByState;
         function loadP(){
             parkListByState = [[${parklistbycode}]];
@@ -37,8 +42,9 @@
 </head>
 <body>
 <header th:replace="header :: headermenu"></header>
-<div class="div_body" sec:authorize="isAuthenticated()">
-    <form th:action="@{/saveVisitNp}" th:object="${npvisit}" method="post">
+<div class="div_body" sec:authorize="hasRole('ROLE_USER')">
+
+    <form id="form_visit" th:action="@{/saveVisitNp}" th:object="${npvisit}" method="post">
 
         <table align="center">
                 <tbody>
@@ -83,7 +89,9 @@
                         <br><label id="err-ed" class="error"></label>
                     </td>
                 </tr>
-
+                <tr><td colspan="2">
+                    <label  class="error">[[${errorMsg}]]</label>
+                </td></tr>
                 <tr>
                     <td colspan="2"><input type="button" class="_button" value="Save" onclick="hasValueVisitFields()"></td>
                 </tr>

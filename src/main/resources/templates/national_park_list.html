@@ -6,30 +6,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body   sec:authorize="hasRole('USER')">
 <header th:replace="header :: headermenu"></header>
 
-<div class="div_body" sec:authorize="hasRole('USER')">
-    <p id="p_parklist">Visited National Park List</p>
+<div>
+    <p id="p_parklist">National Park List</p>
     <div class="div_body">
-
-        <div th:each="detailVisitList : ${visit_detail_list}" class="visitDetail">
-    <table ><thead><th>[[${detailVisitList['key']}]]</th></thead>
-        <div th:each="detailVisit : ${detailVisitList['value']}">
-            <tr>
-            <div th:each="visit : ${detailVisit}"  >
-                <td style="padding:7px;">
-                [[${visit}]]
-                </td>
+        <div th:each="parkList : ${nplist}" class="visitDetail">
+        <table>
+            <thead><th>[[${parkList['key']}]]</th></thead>
+            <div th:each="parkdetail : ${parkList['value']}">
+                <tr>
+                        <td style="padding:7px;">
+                            [[${parkdetail[1]}]]
+                        </td>
+                       <td>
+                          <a th:href="${parkdetail[2]}"> [[${parkdetail[2]}]] </a>
+                       </td>
+                </tr>
             </div>
-                <td>
-                    <a >Add Images</a>
-                </td>
-            </tr>
-        </div>
-    </table>
+        </table>
     </div>
     </div>
+
 </div>
 
 </body>

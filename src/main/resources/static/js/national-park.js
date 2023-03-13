@@ -5,6 +5,27 @@ const END_DATE = "Please select end date";
 const EARLIER_THAN_TODAY = "Please select another date, earlier than today";
 const EQUALS_LATER_THAN_SD = "Please select another date, equals or later than start date";
 
+const USERNAME_REQUIRED = "Introduce username";
+const PASSWORD_REQUIRED = "Introduce password";
+
+const validateLoginFields = () =>{
+    let valid = 1;
+    $c("l_username");
+     if( $("username").value == ''){
+        $("l_username").innerText = USERNAME_REQUIRED;
+        valid = 0;
+     }
+     $c("l_password");
+      if( $("password").value == ''){
+         $("l_password").innerText = PASSWORD_REQUIRED;
+         valid = 0;
+      }
+
+      if(valid == 1){
+           document.getElementById('form').submit();
+      }
+}
+
 const hasValueVisitFields = () =>{
     let valid = 1;
 
@@ -51,8 +72,6 @@ const hasValueVisitFields = () =>{
 
             valid = res;
     }
-
-
 
     if(valid == 1){
         document.getElementById('form_visit').submit();
