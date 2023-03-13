@@ -15,9 +15,9 @@ public interface NationalParkVisitRepository extends CrudRepository<NationalPark
      * @param id id from National park
      * @return
      */
-    @Query( value = "SELECT visit_id, DATE_FORMAT(start_date, \"%M %d %Y\") as start_date, " +
-            "DATE_FORMAT(end_date, '%M %d %Y') as end_date, national_park_id\n" +
-            "FROM national_park_visit\n" +
+    @Query( value = "SELECT visit_id, DATE_FORMAT(start_date, '%M %d %Y') as start_date, " +
+            "DATE_FORMAT(end_date, '%M %d %Y') as end_date, national_park_id " +
+            "FROM national_park_visi " +
             "WHERE national_park_id = :id", nativeQuery = true)
     NationalParkVisit findVisitByNationalParkId(@Param("id") Long id);
 

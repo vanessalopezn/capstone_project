@@ -36,7 +36,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) {
-        User user = userRepository.findUserByEmail(userName.trim());
+        User user = findUserByEmail(userName.trim());
 
         log.debug(userName);
         if (user == null) {
@@ -65,8 +65,9 @@ public class UserServiceImpl implements IUserService {
         User user = modelMapper.map(userDTO, User.class);
 
         user.setPassword(encoder.encode(user.getPassword()));
-        List<Role> list = user.getRoles();
-        list.add(roleService.findRoleByRoleName("USER"));
+        List<Role> list = new ArrayList<>();// user.getRoles();
+        Role role = roleService.findRoleByRoleName("USER");
+        list.add(role);
         user.setRoles(list);
         userRepository.save(user);
     }
@@ -82,7 +83,7 @@ public class UserServiceImpl implements IUserService {
      */
     public User findUserByEmail(String email)
     {
-        return userRepository.findUserByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));;
+        return userRepository.findUserByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public User findUserByName(String name)
@@ -93,5 +94,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User findUserById(Long id) {
        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 }
