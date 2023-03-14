@@ -1,3 +1,7 @@
+<!--
+@Author Vanessa Lopez
+HTML National park list
+-->
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <title>National Park</title>
 <head>
@@ -7,6 +11,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body   sec:authorize="hasRole('USER')">
+
+<!--
+th:replace insert the menu from header.html (th:fragment)
+-->
 <header th:replace="header :: headermenu"></header>
 
 <div>

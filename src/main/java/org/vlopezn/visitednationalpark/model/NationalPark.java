@@ -1,8 +1,12 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalPark
+ * NationalPark entity
+ */
 package org.vlopezn.visitednationalpark.model;
 
 import javax.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -18,8 +22,5 @@ public class NationalPark {
 
     @Column(length = 250)
     private String link;
-
-
-
 
 }

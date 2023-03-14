@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkVisit
+ * NationalParkVisit entity
+ */
 package org.vlopezn.visitednationalpark.model;
 
 import lombok.Getter;
@@ -7,7 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter

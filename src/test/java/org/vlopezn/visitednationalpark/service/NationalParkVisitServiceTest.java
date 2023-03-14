@@ -42,16 +42,11 @@ public class NationalParkVisitServiceTest {
         Assertions.assertTrue( userRepository.count() > 0);
     }
 
-    @Test
-    @Order(2)
-    public void addVisitUser() {
-        user = userService.findUserByEmail("vlopez@test.com");
-        List<NationalParkVisit> list = new ArrayList<>();
-        list = user.getVisits();
-        list.add(nationalParkVisit);
-        user.setVisits(list);
+    @Test@Order(2)
+    public void deleteVisit(){
 
-        userService.saveUpdateUser(user);
-        Assertions.assertTrue( userRepository.count() > 0);
+        visitService.deleteNationalParkVisit(nationalParkVisit);
+        NationalParkVisit deleteNp = visitService.findVisitByNationalParkId(nationalParkVisit.getVisit_id());
+        Assertions.assertNull(deleteNp);
     }
 }

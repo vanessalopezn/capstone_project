@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class StateRepository
+ * Some methods CRUD from States
+ */
 package org.vlopezn.visitednationalpark.repository;
 
 import org.springframework.data.jpa.repository.Query;

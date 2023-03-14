@@ -1,10 +1,14 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkServiceImpl
+ * This class connect to national park repository to manipulate the data.
+ */
 package org.vlopezn.visitednationalpark.service;
 
 import org.vlopezn.visitednationalpark.model.NationalPark;
 import org.vlopezn.visitednationalpark.repository.NationalParkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

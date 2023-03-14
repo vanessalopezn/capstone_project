@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkVisitRepository
+ * CRUD methods from visit to national parks
+ */
 package org.vlopezn.visitednationalpark.repository;
 
 import org.vlopezn.visitednationalpark.model.NationalParkVisit;

@@ -1,6 +1,12 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class User
+ * Entity user
+ */
 package org.vlopezn.visitednationalpark.model;
 import lombok.*;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Entity
@@ -25,11 +31,21 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
+    @Transactional
+    public List<NationalParkVisit> getVisits() {
+        return visits;
+    }
 
+    /**
+     * The user has many visits
+     */
     @OneToMany(targetEntity = NationalParkVisit.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_visits",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name="visit_id"))
     private List<NationalParkVisit> visits;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Role.class, fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

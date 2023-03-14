@@ -1,8 +1,12 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class State
+ * Entity state
+ */
 package org.vlopezn.visitednationalpark.model;
 
 import javax.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity

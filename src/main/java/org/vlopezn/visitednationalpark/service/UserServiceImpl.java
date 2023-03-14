@@ -1,3 +1,7 @@
+/**
+ * Class UserServiceImpl
+ * Code from example LAB - 309.8.1
+ */
 package org.vlopezn.visitednationalpark.service;
 
 import org.vlopezn.visitednationalpark.dto.UserDTO;
@@ -18,7 +22,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,13 +68,14 @@ public class UserServiceImpl implements IUserService {
         User user = modelMapper.map(userDTO, User.class);
 
         user.setPassword(encoder.encode(user.getPassword()));
-        List<Role> list = new ArrayList<>();// user.getRoles();
+        List<Role> list = new ArrayList<>();//Modified vanessalopezn
         Role role = roleService.findRoleByRoleName("USER");
         list.add(role);
         user.setRoles(list);
         userRepository.save(user);
     }
     /**
+     * Added by Vanessa Lopez
      * This method updates User information.
      **/
     @Override
@@ -84,16 +88,6 @@ public class UserServiceImpl implements IUserService {
     public User findUserByEmail(String email)
     {
         return userRepository.findUserByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
-    }
-
-    public User findUserByName(String name)
-    {
-        return null;// userRepository.findUserByUserName(name);
-    }
-
-    @Override
-    public User findUserById(Long id) {
-       return userRepository.findUserById(id);
     }
 
     @Override

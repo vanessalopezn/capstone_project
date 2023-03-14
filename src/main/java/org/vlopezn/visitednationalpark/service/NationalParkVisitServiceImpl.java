@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkSVisiterviceImpl
+ * This class connect to national park visit repository to manipulate the data.
+ */
 package org.vlopezn.visitednationalpark.service;
 
 import org.vlopezn.visitednationalpark.model.NationalParkVisit;

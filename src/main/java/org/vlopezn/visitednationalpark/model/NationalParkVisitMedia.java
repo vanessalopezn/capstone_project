@@ -1,8 +1,12 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkMedia
+ * NatonalParkMedia entity
+ */
 package org.vlopezn.visitednationalpark.model;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity

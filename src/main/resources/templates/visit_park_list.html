@@ -1,3 +1,7 @@
+<!--
+@Author Vanessa Lopez
+HTML visit list by state
+-->
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <title>National Park</title>
 <head>
@@ -14,19 +18,18 @@
     <div class="div_body">
 
         <div th:each="detailVisitList : ${visit_detail_list}" class="visitDetail">
-    <table ><thead><th>[[${detailVisitList['key']}]]</th></thead>
-        <div th:each="detailVisit : ${detailVisitList['value']}">
-            <tr>
-            <div th:each="visit : ${detailVisit}"  >
-                <td style="padding:7px;">
-                [[${visit}]]
-                </td>
-            </div>
-                <td>
-                    <a >Add Images</a>
-                </td>
-            </tr>
-        </div>
+            <table >
+                <thead><th>[[${detailVisitList['key']}]]</th></thead>
+                    <div th:each="detailVisit : ${detailVisitList['value']}">
+                        <tr th:each="visit : ${detailVisit}" >
+                            <td style="padding:7px;">
+                            [[${visit}]]
+                            </td>
+                            <td>
+                                <a >Add Images</a>
+                            </td>
+                        </tr>
+                    </div>
     </table>
     </div>
     </div>

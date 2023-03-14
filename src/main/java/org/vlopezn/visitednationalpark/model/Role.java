@@ -1,3 +1,7 @@
+/**
+ * Entity role
+ * Code from example LAB - 309.8.1
+ */
 package org.vlopezn.visitednationalpark.model;
 
 import lombok.Getter;
@@ -8,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 @Setter
 @Getter
 @NoArgsConstructor

@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkRepository
+ * CRUD methods from national parks
+ */
 package org.vlopezn.visitednationalpark.repository;
 
 import org.vlopezn.visitednationalpark.model.NationalPark;
@@ -10,7 +15,6 @@ import java.util.List;
 
 @Repository
 public interface NationalParkRepository extends CrudRepository<NationalPark, Long> {
-
 
     /**
      * Get all national parks

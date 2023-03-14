@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class IStateService
+ * State sevice to handle state data.
+ */
 package org.vlopezn.visitednationalpark.service;
 
 import org.vlopezn.visitednationalpark.model.State;

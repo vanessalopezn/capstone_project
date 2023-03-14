@@ -63,7 +63,14 @@ public class UserServiceTest {
     @Test
     @Order(5)
     public void deleteUserTest(){
+
         userService.delete(user);
+        User deleteUser;
+
+        try{deleteUser= userService.findUserByEmail(user.getEmail());}
+        catch (Exception e){deleteUser=null;}
+
+        Assertions.assertNull(deleteUser);
     }
 
 }

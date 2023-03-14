@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkController
+ * This class handle the user request for national park
+ */
 package org.vlopezn.visitednationalpark.controller;
 
 import org.vlopezn.visitednationalpark.model.NationalPark;
@@ -23,6 +28,11 @@ public class NationalParkController {
         this.statesService = statesService;
     }
 
+    /**
+     * Mapping to National park list.
+     * @param model add attributes for national parks detail and state.
+     * @return name of HTML form to display national parl list
+     */
     @GetMapping("/national_park_list")
     public String getParkList(Model model){
         List<State> statesList = statesService.findStatesWithParks();

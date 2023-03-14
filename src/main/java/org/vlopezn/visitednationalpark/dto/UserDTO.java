@@ -1,3 +1,6 @@
+/**
+ * Code from example LAB - 309.8.1
+ */
 package org.vlopezn.visitednationalpark.dto;
 
 

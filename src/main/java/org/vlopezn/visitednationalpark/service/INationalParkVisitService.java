@@ -1,3 +1,8 @@
+/**
+ * @Author Vanessa Lopez Nunez
+ * @Class NationalParkVisitService
+ * Visits to national park service to handle the data
+ */
 package org.vlopezn.visitednationalpark.service;
 
 import org.vlopezn.visitednationalpark.model.NationalParkVisit;
