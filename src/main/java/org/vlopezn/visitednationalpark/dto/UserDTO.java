@@ -4,7 +4,7 @@
 package org.vlopezn.visitednationalpark.dto;
 
 
-import org.vlopezn.visitednationalpark.validation.FieldMatch;
+import org.vlopezn.visitednationalpark.security.IFieldMatch;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@FieldMatch.List( { @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")})
+@IFieldMatch.List( { @IFieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")})
 public class UserDTO {
 
     @Pattern(regexp = "[A-Za-z]+$", message = "Only alphabetic allowed")

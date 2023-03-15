@@ -1,14 +1,16 @@
 <!--
 @Author Vanessa Lopez
 HTML visit list by state
+Icons from htt://icon-icons.com
 -->
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <title>National Park</title>
 <head>
-    <link rel="stylesheet" th:href ="@{/css/national-park.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href ="@{/css/national-park.css}">
+    <script th:src="@{/js/national-park.js}"></script>
 </head>
 <body>
 <header th:replace="header :: headermenu"></header>
@@ -18,20 +20,37 @@ HTML visit list by state
     <div class="div_body">
 
         <div th:each="detailVisitList : ${visit_detail_list}" class="visitDetail">
-            <table >
-                <thead><th>[[${detailVisitList['key']}]]</th></thead>
+            <table style="width:40%;">
+                <thead>
+                    <th>[[${detailVisitList['key']}]]</th>
+                </thead>
                     <div th:each="detailVisit : ${detailVisitList['value']}">
-                        <tr th:each="visit : ${detailVisit}" >
-                            <td style="padding:7px;">
-                            [[${visit}]]
+                        <tr >
+                            <td style="padding:7px;width:35%;">
+                            [[${detailVisit[2]}]]
                             </td>
-                            <td>
-                                <a >Add Images</a>
+                            <td style="padding:7px;width:35%;">
+                                [[${detailVisit[3]}]]
+                            </td>
+                            <td style="width:20%;">
+                                <a ><img th:src="@{/img/Add_Image_icon.png}" style="padding-right:5px;width:25px;height:25px;" title="Add images"></a>
+                                <a ><img th:src="@{/img/Delete_icon.png}" style="width:20px;height:20px;" title="Delete visit"></a>
                             </td>
                         </tr>
+                        <tr><td colspan="3">
+                        <div class="images" >
+                            <div class="photo" th:each="mediaVisitList : ${hm_visitmediaList['__${detailVisit[0]}__']}">
+                                <a style="cursor:pointer;" title="View full image size" targe="_blank" th:attr="onclick=|showImage('${mediaVisitList[1]}')|" >
+                                <img th:src="@{/img/__${mediaVisitList[1]}__}" alt="photo" />
+                                </a>
+                            </div>
+                        </div>
+                        </td>
+                        </tr>
                     </div>
-    </table>
-    </div>
+            </table>
+
+        </div>
     </div>
 </div>
 

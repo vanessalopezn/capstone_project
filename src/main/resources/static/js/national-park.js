@@ -110,3 +110,8 @@ fucntion to clear field
 @param element name's
 */
 const $c = (element) => { return document.getElementById(element).innerText = ''; }
+
+const showImage = (imgname) =>
+{
+    window.open("../img/"+imgname)
+}

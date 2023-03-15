@@ -5,14 +5,8 @@
  */
 package org.vlopezn.visitednationalpark.controller;
 
-import org.vlopezn.visitednationalpark.model.NationalPark;
-import org.vlopezn.visitednationalpark.model.NationalParkVisit;
-import org.vlopezn.visitednationalpark.model.State;
-import org.vlopezn.visitednationalpark.model.User;
-import org.vlopezn.visitednationalpark.service.INationalParkService;
-import org.vlopezn.visitednationalpark.service.INationalParkVisitService;
-import org.vlopezn.visitednationalpark.service.IStatesService;
-import org.vlopezn.visitednationalpark.service.IUserService;
+import org.vlopezn.visitednationalpark.model.*;
+import org.vlopezn.visitednationalpark.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -36,13 +30,15 @@ public class NationalParkVisitController {
     INationalParkService nationalParkService;
     IStatesService statesService;
     IUserService userService ;
+    IVisitMedia visitMedia;
     @Autowired
     public NationalParkVisitController(INationalParkVisitService nationalParkVisitService, IUserService userService,
-                                       INationalParkService nationalParkService, IStatesService iStatesService) {
+                                       INationalParkService nationalParkService, IStatesService iStatesService, IVisitMedia visitMedia) {
         this.nationalParkVisitService = nationalParkVisitService;
         this.userService = userService;
         this.nationalParkService = nationalParkService;
         this.statesService = iStatesService;
+        this.visitMedia = visitMedia;
     }
 
     /**
@@ -95,19 +91,25 @@ public class NationalParkVisitController {
 
         List<NationalParkVisit> visitList = user.getVisits(); //get user visits
         HashMap<String, List> ht_visitsbycodeList = new HashMap<>();
+        HashMap<String, List<String[]>> hm_visitmediaList = new HashMap<>();
 
         for (NationalParkVisit visit: visitList
              ) {
+                /////list to keep detail for every visit/////
                 List<String[]> visitDetailList = new ArrayList<>();
+
                 String[] visitDetail = new String[4];
                 NationalPark np = nationalParkService.getNationalParkById(visit.getNational_park_id());//Get park information
                 visitDetail[0] = visit.getVisit_id().toString();
                 visitDetail[1] = visit.getNational_park_id().toString();
                 visitDetail[2] = np.getName();
                 visitDetail[3] = format.format(visit.getStart_date()) + " - " + format.format(visit.getEnd_date());
+                /////////////////    ////////////
 
+                //build key for HashMap statecode-statename
                 State state = statesService.getStateByPark(visit.getNational_park_id());
                 String key = state.getState_code()+"-"+state.getName();
+                ///////
 
                 if(ht_visitsbycodeList.get(key) == null){
                     visitDetailList.add(visitDetail);
@@ -118,8 +120,27 @@ public class NationalParkVisitController {
                     ht_visitsbycodeList.put(key, newList);
                 }
 
-        }
+                /////media list by visit id
+                List<VisitMedia> mediaList = visitMedia.getMediaByVisitId(visit.getVisit_id());
+                List<String[]> s_mediaList = new ArrayList<>();
+                if(mediaList!=null)
+                {
+                    for (VisitMedia vm : mediaList
+                         ) {
+                        String[] s_media = new String[3];
+                        s_media[0] = vm.getMedia_id().toString();
+                        s_media[1] = vm.getName();
+                        s_media[2] = vm.getDescription();
+                        s_mediaList.add(s_media);
+                    }
+
+                    hm_visitmediaList.put(visit.getVisit_id().toString(), s_mediaList);
+                }
+               ///////end media list
+
+        }//end for visits
         model.addAttribute("visit_detail_list", ht_visitsbycodeList);
+        model.addAttribute("hm_visitmediaList", hm_visitmediaList);
 
         return "visit_park_list";
     }

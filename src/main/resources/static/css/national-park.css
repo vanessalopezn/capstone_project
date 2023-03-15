@@ -10,6 +10,7 @@
     width: 100%;
     text-align: center;
     padding-top: 75px;
+    padding-bottom: 50px;
   }
 
   #p_parklist2{
@@ -29,63 +30,66 @@
         border: 0;
 }
 
-    body{
-        padding-bottom: 0px;
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+body{
+    padding-bottom: 0px;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 
 
-    .div_body{
-        padding-top:30px;
-        padding-left:50px;
-    }
-   td{
-        font-size: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-        padding: 10px;
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-bottom: 10px;
-    }
+.div_body{
+    padding-top:30px;
+    padding-left:30px;
+    padding-right:30px;
+}
+td{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
 
-    input text{
-        height: 25px;
-        width: 170px;
-    }
+input text{
+    height: 25px;
+    width: 170px;
+}
 
-    input[type=date]{
-        height: 25px;
-        width: 170px;
-    }
+input[type=date]{
+    height: 25px;
+    width: 170px;
+}
 
-    .btn-submit{
-        height: 30px;
-        width: 100px;
-    }
+.btn-submit{
+    height: 30px;
+    width: 100px;
+}
 
-    select{
-        height: 25px;
-        width: 170px;
-    }
+select{
+    height: 25px;
+    width: 170px;
+}
 
-    li{
-        padding: 5px;
-    }
+li{
+    padding: 5px;
+}
 
-    th{
-        font-family: Arial, Helvetica, sans-serif;
-    }
+th{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    video{
-        width: 420;
-        height: 340;
-        padding-left: 35%; 
-    }
+video{
+    width: 420;
+    height: 340;
+    padding-left: 35%;
+}
 
-label{
+.label{
     height: 15px;
+    color: rgb(0,0,0);
+    font-size: 12px;
 }
 
 
@@ -101,16 +105,17 @@ label{
 
 /******************** visit list ***********************/
 .visitDetail{
-        width: 100%;
         border-style: none;
         background-color: rgb(255, 255, 255);
-        padding-topt: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         font-size: 12px;
         font-family: Verdana;
+        align:center;
     }
 
 /******************* HEADER MENU ********************/
-.container{
+.containerMenu{
         width: 100%;
         border-style: none;
         background-color: rgb(171, 192, 199);
@@ -152,7 +157,6 @@ nav a{
       color: white;
       text-align: center;
       text-decoration: none;
-      padding-bottom: 10px;
     }
 
     .p_href{
@@ -204,9 +208,13 @@ nav a{
 }
 
 .body_signup{
-    margin-top:15%;
+    margin-top:8%;
     display: flex;
     justify-content: center;
+
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
@@ -221,4 +229,24 @@ nav a{
     border-radius: 15px;
     border: 2px solid #FFF;
     font-size: 14px;
+}
+/*********************/
+ .images {
+        padding:20px;
+        border:dotted 1px;
+        white-space:nowrap;
+        overflow-x:auto;
+}
+
+
+.photo {
+    width: 250px;
+    padding: 0 10px;
+    height: 250px;
+    display: inline-block;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
 }
