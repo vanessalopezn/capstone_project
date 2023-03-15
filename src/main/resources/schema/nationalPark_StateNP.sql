@@ -1,4 +1,3 @@
-CREATE SCHEMA `visited_np` ;
 
 /*Alaska (8)*/
 INSERT INTO national_park (name, link) VALUES

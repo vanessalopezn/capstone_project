@@ -3,12 +3,19 @@ Perscholas Java fullstack project
 
 The project Visited National Parks is a Spring Boot web based application which uses different full stack Java technologies such as Thymeleaf, Bootstrap and Plain Javascript for the front end, the security is handled by Spring security and the data layer implementation used is JPA data and hibernate. Spring MVC is used for the different application layers and also JUnit is used for the unit testing.
 
-The goal for this project is that a user can register the national parks visits by selecting a corresponding national park for a given the dates of the visit, all this states/national parks catalog information is auto generated when installing the project and running the insert queries. The order of running these insert scripts is:
-   1)resources/schema/States_List_query.sql
-   2)resources/schema/nationalPark_StateNP.sql
-   3)resources/schema/Demo.sql
+The goal for this project is that a user can register the national parks visits by selecting a corresponding national park 
+for a given the dates of the visit all this states/national parks catalog information is auto generated when installing 
 
-To compile and run this project, it is required to clone the repo (if downloading it from gitlab) or if the project is shared via a compressed zip file, then unzip the file and open the project in an IntelliJ IDE folder, make sure Java version 11 is installed and simply Build + Run the project.
+In order to run the project, below are the steps to perform:
+   1) Clone the repo (if downloading the project from gitlab) or if the project is shared via a compressed zip file, then unzip the file and open the project in an IntelliJ IDE folder
+   2) Go to MySQL Workbench and run the following command in a query window: CREATE SCHEMA visited_np
+   3) Run the project file capstone_project/src/main/java/org.vlopezn.visitednationalpark/VisitedNationalParkApplication
+   4) Execute the content of the following queries in MySQL Workbench, these queries correspond to the state list, national parks and 
+demo script to easily run the app. 
+      4.1) resources/schema/States_List_query.sql
+      4.2) resources/schema/nationalPark_StateNP.sql
+      4.3) resources/schema/Demo.sql
+   5) Use the following credentials in the login page: vlopez@test.com/123456
 
 Once the project runs, open a new browser and point the url to: http://localhost:8010/login and make sure you follow below steps
 Create a new user and make sure after a new user is created, the web site redirects to the Login page
